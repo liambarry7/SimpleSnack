@@ -45,16 +45,16 @@ public class Food extends Snack {
         return (int) Math.round((this.basePrice + (this.basePrice * surchargePercentage)));
     }
 
-    public void test() {
-        int a = (int) (this.basePrice + (this.basePrice * surchargePercentage));
-        double b = this.basePrice + (this.basePrice * surchargePercentage);
-        System.out.println("as int: " + a);
-        System.out.println("as dbl: " + b);
-
-        int x = (int) Math.round(b);
-        System.out.println("b with round " + x);
-
-    }
+//    public void test() {
+//        int a = (int) (this.basePrice + (this.basePrice * surchargePercentage));
+//        double b = this.basePrice + (this.basePrice * surchargePercentage);
+//        System.out.println("as int: " + a);
+//        System.out.println("as dbl: " + b);
+//
+//        int x = (int) Math.round(b);
+//        System.out.println("b with round " + x);
+//
+//    }
 
     public Boolean getHotFood() {
         return hotFood;
