@@ -28,14 +28,15 @@ public class StudentCustomer extends Customer {
     public int chargeAccount(int snackPrice) throws InsufficientBalanceException {
         // snackPrice passed into the method should already have taxes/surplus applied
         // students get 5% discount & allowed up to £-5 acc balance
-        int pendingBalance = this.getAccountBalance() - (int)Math.round((snackPrice * 0.95));
+        double discountedPrice = Math.round(snackPrice * 0.95);
+        int pendingBalance = this.getAccountBalance() - (int)discountedPrice;
         if (pendingBalance < -500) {
             throw new InsufficientBalanceException("Insufficient funds in account.");
         } else {
             setAccountBalance(pendingBalance);
         }
 
-        return getAccountBalance();
+        return (int)discountedPrice;
     }
 
     public static double getDiscountAmount() {
@@ -46,11 +47,12 @@ public class StudentCustomer extends Customer {
 
 
         try {
-            StudentCustomer a = new StudentCustomer(332232, "Gordon");
+            StudentCustomer a = new StudentCustomer(332232, "Gordon", 500);
             StudentCustomer b = new StudentCustomer(123123, "a", -1);
             System.out.println(a);
             System.out.println(b);
-            System.out.println(a.chargeAccount(10));
+            System.out.println(a.chargeAccount(100));
+            System.out.println(a.getAccountBalance());
 
 
         } catch(Exception e) {

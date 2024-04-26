@@ -91,13 +91,14 @@ public class Customer {
 
 
         // snackPrice passed into the method should already have taxes/surplus applied
+
         int pendingBalance = this.getAccountBalance() - snackPrice;
         if (pendingBalance < 0) {
             throw new InsufficientBalanceException("Insufficient funds in account.");
         } else {
             setAccountBalance(this.getAccountBalance() - snackPrice);
         }
-        return getAccountBalance();
+        return snackPrice;
     }
 
     public int getAccountID() {
@@ -149,13 +150,13 @@ public class Customer {
             System.out.println(b);
 
             a.addFunds(20);
-            b.addFunds(32
-            );
+            b.addFunds(32);
+
             System.out.println(a.getAccountBalance());
             System.out.println(b.getAccountBalance());
 
             System.out.println("a balance before: " + a.getAccountBalance());
-            a.chargeAccount(180);
+            System.out.println(a.chargeAccount(80));
             System.out.println("a balance after: " + a.getAccountBalance());
 
         } catch (Exception e) {
