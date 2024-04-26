@@ -24,6 +24,7 @@ public class Simulation {
 
 
         System.out.println("Hello world!");
+        System.out.println("test");
 
         try {
 //            Snack s = new Snack("F/1231231", "a", 23);
