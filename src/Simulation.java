@@ -17,6 +17,11 @@ public class Simulation {
          *
          *  Change chargeAccount methods to return the price of the item bought, not the remaining balance
          *
+         *  maybe use hashmap for collections in snackshop class?
+         *
+         *  update accessor and mutators correctly
+         *
+         *
          */
 
 
