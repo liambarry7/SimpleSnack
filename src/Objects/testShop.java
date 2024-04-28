@@ -74,6 +74,26 @@ public class testShop {
 
 
     public int returnLargestBasePrice() {
+        // cycle through list of snacks
+        // compare each one - if larger, store, if lesser, ignore
+
+
+
+
+        Snack currentSnack;
+//
+//        for (Snack i : snacks.values()) { // i = key
+//            System.out.println(snacks.get(i));
+//            currentSnack = snacks.get(i);
+//            Snack nextSnack = snacks.get(i+1);
+//
+//            if (nextSnack == null) {
+//                System.out.println("end loop");
+//            } else if (currentSnack.getBasePrice() > nextSnack.getBasePrice()) {
+//                System.out.println("ah");
+//            }
+//        }
+
         return -1;
     }
 
@@ -125,6 +145,9 @@ public class testShop {
             a.processPurchase("123456", "D/3238145");
 
             System.out.println(a.getCustomer("123456"));
+
+
+            a.returnLargestBasePrice();
 
         } catch(Exception e) {
             System.out.println(e);
