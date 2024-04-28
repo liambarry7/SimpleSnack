@@ -1,5 +1,7 @@
 import Objects.*;
 
+import java.io.File;
+
 public class Simulation {
     public static void main(String[] args) {
 
@@ -26,15 +28,34 @@ public class Simulation {
 
 
 
+//        System.out.println("Hello world!");
+//        System.out.println("test");
+//
+//        try {
+////            Snack s = new Snack("F/1231231", "a", 23);
+//        } catch (Exception e) {
+//            System.out.println("Error: " + e);
+//        }
+
+//        initialiseShop("UEA Shop", snacks.txt, customer.txt);
 
 
-        System.out.println("Hello world!");
-        System.out.println("test");
-
-        try {
-//            Snack s = new Snack("F/1231231", "a", 23);
-        } catch (Exception e) {
-            System.out.println("Error: " + e);
-        }
     }
+
+    public static SnackShop initialiseShop(String shopName, File snackFile, File customerFile) {
+        SnackShop newSnackShop = new SnackShop(shopName);
+
+        // read snackFile
+        // create snack object from each line
+
+        // read customer file
+        // create customer object from each line
+
+
+
+
+        return newSnackShop;
+    }
+
+
 }
