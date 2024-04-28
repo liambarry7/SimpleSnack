@@ -51,7 +51,7 @@ public class SnackShop {
     public Customer getCustomer(String customerID) throws InvalidCustomerException {
         Customer customer = null;
         for (int i = 0; i < customers.size(); i++) {
-            if (customers.get(i).getAccountID() == Integer.parseInt(customerID)) {
+            if (customers.get(i).getAccountID().equals(customerID)) {
                 customer = customers.get(i);
             }
         }
@@ -138,12 +138,12 @@ public class SnackShop {
     public static void main(String[] args) {
         try {
             SnackShop a = new SnackShop("name");
-            Customer cust1 = new Customer(123456, "dave", 1000);
-            Customer cust2 = new Customer(165446, "ed", 50);
-            StaffCustomer staff = new StaffCustomer(123457, "al", 1000, "CMP");
-            StaffCustomer staff2 = new StaffCustomer(423457, "ai", 1000, "BIO");
-            StudentCustomer stu = new StudentCustomer(123458, "ed", -1);
-            StudentCustomer stu2 = new StudentCustomer(987654, "fi", -20);
+            Customer cust1 = new Customer("123456", "dave", 1000);
+            Customer cust2 = new Customer("165446", "ed", 50);
+            StaffCustomer staff = new StaffCustomer("123457", "al", 1000, "CMP");
+            StaffCustomer staff2 = new StaffCustomer("423457", "ai", 1000, "BIO");
+            StudentCustomer stu = new StudentCustomer("123458", "ed", -1);
+            StudentCustomer stu2 = new StudentCustomer("987654", "fi", -20);
 
 
             Drink snack1 = new Drink("D/3238145", "can", 200);
@@ -190,5 +190,19 @@ public class SnackShop {
 
 
 
+    }
+
+    public void allCustomers() {
+        for (int i = 0; i < this.customers.size(); i++) {
+            System.out.println(customers.get(i));
+        }
+        System.out.println(customers.size());
+    }
+
+    public void allSnacks() {
+        for (int i = 0; i < this.snacks.size(); i++) {
+            System.out.println(snacks.get(i));
+        }
+        System.out.println(snacks.size());
     }
 }

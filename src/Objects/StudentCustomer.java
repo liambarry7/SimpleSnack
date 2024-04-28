@@ -4,7 +4,7 @@ import Exceptions.InsufficientBalanceException;
 import Exceptions.InvalidCustomerException;
 
 public class StudentCustomer extends Customer {
-    public StudentCustomer(int accountID, String name, int accountBalance) throws InvalidCustomerException, InsufficientBalanceException {
+    public StudentCustomer(String accountID, String name, int accountBalance) throws InvalidCustomerException, InsufficientBalanceException {
         super(accountID, name);
         // accbalance can be up to negatuve 5
         // edit constructors for this
@@ -16,12 +16,12 @@ public class StudentCustomer extends Customer {
 
     }
 
-    public StudentCustomer(int accountID, String name) throws InvalidCustomerException {
+    public StudentCustomer(String accountID, String name) throws InvalidCustomerException {
         super(accountID, name);
     }
 
     public String toString() {
-        return "STUDENT " + super.toString();
+        return super.toString() + " STUDENT";
     }
 
     @Override
@@ -47,8 +47,8 @@ public class StudentCustomer extends Customer {
 
 
         try {
-            StudentCustomer a = new StudentCustomer(332232, "Gordon", 500);
-            StudentCustomer b = new StudentCustomer(123123, "a", -1);
+            StudentCustomer a = new StudentCustomer("332232", "Gordon", 500);
+            StudentCustomer b = new StudentCustomer("123123", "a", -1);
             System.out.println(a);
             System.out.println(b);
             System.out.println(a.chargeAccount(100));

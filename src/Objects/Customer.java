@@ -4,11 +4,11 @@ import Exceptions.InsufficientBalanceException;
 import Exceptions.InvalidCustomerException;
 
 public class Customer {
-    protected int accountID;
+    protected String accountID;
     protected String name;
     protected int accountBalance;
 
-    public Customer(int accountID, String name, int accountBalance) throws InvalidCustomerException, InsufficientBalanceException {
+    public Customer(String accountID, String name, int accountBalance) throws InvalidCustomerException, InsufficientBalanceException {
 //        try {
 //            //check accID is 6 digits & accBalance is not negative
 //            if (Integer.toString(accountID).length() != 6) {
@@ -28,7 +28,7 @@ public class Customer {
 //        }
 
         //check accID is 6 digits & accBalance is not negative
-        if (Integer.toString(accountID).length() != 6) {
+        if (accountID.length() != 6) {
             throw new InvalidCustomerException("Invalid accountID.");
 
         } else if (!(accountBalance >= 0)) {
@@ -41,7 +41,7 @@ public class Customer {
         }
     }
 
-    public Customer(int accountID, String name) throws InvalidCustomerException {
+    public Customer(String accountID, String name) throws InvalidCustomerException {
 //        try {
 //            //check accID is 6 digits
 //            if (Integer.toString(accountID).length() != 6) {
@@ -57,7 +57,7 @@ public class Customer {
 //        }
 
         //check accID is 6 digits
-        if (Integer.toString(accountID).length() != 6) {
+        if (accountID.length() != 6) {
             throw new InvalidCustomerException("Invalid accountID.");
         } else {
             this.accountID = accountID;
@@ -101,7 +101,7 @@ public class Customer {
         return snackPrice;
     }
 
-    public int getAccountID() {
+    public String getAccountID() {
         return accountID;
     }
 
@@ -113,7 +113,7 @@ public class Customer {
         return accountBalance;
     }
 
-    public void setAccountID(int accountID) {
+    public void setAccountID(String accountID) {
         this.accountID = accountID;
     }
 
@@ -144,8 +144,8 @@ public class Customer {
 //        System.out.println("a balance after: " + a.getAccountBalance());
 
         try {
-            Customer a = new Customer(121256, "DAve", 100);
-            Customer b = new Customer(123456, "eggman");
+            Customer a = new Customer("121256", "DAve", 100);
+            Customer b = new Customer("123456", "eggman");
             System.out.println(a);
             System.out.println(b);
 

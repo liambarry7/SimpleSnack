@@ -10,13 +10,13 @@ public class testShop {
     private String shopName;
     private int shopTurnover;
 
-    private HashMap<Integer, Customer> customers;
+    private HashMap<String, Customer> customers;
     private HashMap<String, Snack> snacks;
 
     public testShop(String shopName) {
         this.shopName = shopName;
         this.shopTurnover = 0;
-        this.customers = new HashMap<Integer, Customer>();
+        this.customers = new HashMap<String, Customer>();
         this.snacks = new HashMap<String, Snack>();
     }
 
@@ -80,7 +80,7 @@ public class testShop {
 
 
 
-        Snack currentSnack;
+//        Snack currentSnack;
 //
 //        for (Snack i : snacks.values()) { // i = key
 //            System.out.println(snacks.get(i));
@@ -126,9 +126,9 @@ public class testShop {
     public static void main(String[] args) {
         try {
             testShop a = new testShop("name");
-            Customer cust1 = new Customer(123454, "dave", 50);
-            StaffCustomer cust2 = new StaffCustomer(123456, "al", 1000, "CMP");
-            StudentCustomer stu = new StudentCustomer(123123, "ed", 50);
+            Customer cust1 = new Customer("123454", "dave", 50);
+            StaffCustomer cust2 = new StaffCustomer("123456", "al", 1000, "CMP");
+            StudentCustomer stu = new StudentCustomer("123123", "ed", 50);
             Drink snack1 = new Drink("D/3238145", "can", 100);
             Food snack2 = new Food("F/3281435", "crisp", true, 60);
 

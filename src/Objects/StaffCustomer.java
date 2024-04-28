@@ -6,18 +6,19 @@ import Exceptions.InvalidCustomerException;
 public class StaffCustomer extends Customer {
     private String school;
 
-    public StaffCustomer(int accountID, String name, int accountBalance, String school) throws InvalidCustomerException, InsufficientBalanceException {
+    public StaffCustomer(String accountID, String name, int accountBalance, String school) throws InvalidCustomerException, InsufficientBalanceException {
         super(accountID, name, accountBalance);
         this.school = school;
     }
 
-    public StaffCustomer(int accountID, String name, String school) throws InvalidCustomerException {
+    public StaffCustomer(String accountID, String name, String school) throws InvalidCustomerException {
         super(accountID, name);
         this.school = school;
     }
 
     public String toString() {
-        return "STAFF " + super.toString() + " " + school;
+
+        return super.toString() + " STAFF " + school;
     }
 
     @Override
@@ -54,7 +55,7 @@ public class StaffCustomer extends Customer {
 
     public static void main(String[] args){
         try {
-            StaffCustomer a = new StaffCustomer(123123, "Jane", 100, "CMP");
+            StaffCustomer a = new StaffCustomer("123123", "Jane", 100, "CMP");
             System.out.println(a);
             System.out.println(a.chargeAccount(100));
             System.out.println(a.getAccountBalance());
