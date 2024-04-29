@@ -113,7 +113,6 @@ public class Simulation {
         int x = 0;
 
 
-
         try {
             Scanner scanner = new Scanner(transactionFile);
             while (scanner.hasNextLine()) {
@@ -190,8 +189,7 @@ public class Simulation {
             }
 
 
-
-        } catch(Exception e) {
+        } catch (Exception e) {
             System.out.println("Error: " + e);
         }
 
@@ -200,7 +198,7 @@ public class Simulation {
         System.out.println("Number of negative balances at shop: " + shop.countNegativeAccounts());
         System.out.println("Median customer balance: " + shop.calculateMedianCustomerBalance());
         System.out.println("Final shop turnover: " + shop.getShopTurnover());
-
+    }
 
 //
 //
@@ -263,7 +261,7 @@ public class Simulation {
 //        } catch(Exception e) {
 //            System.out.println("Error: " + e);
 //        }
-    }
+
 
 
 }
