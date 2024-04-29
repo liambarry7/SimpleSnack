@@ -26,7 +26,7 @@ public class Simulation {
          *  update accessor and mutators correctly
          *
          *
-         *  FIX ADDING NEW STAFF CUSTOMER IN SIMULATION
+         *  FIX ADDING NEW STAFF CUSTOMER IN SIMULATION - done
          *
          *
          *
@@ -125,14 +125,14 @@ public class Simulation {
                 try {
                     switch (transactionValues[0]) {
                         case "PURCHASE":
-                            shop.processPurchase(transactionValues[1], transactionValues[2]);
-                            System.out.println(shop.getCustomer(transactionValues[1]).getName() + " has successfully purchased " + shop.getSnack(transactionValues[2]).getName());
+//                            shop.processPurchase(transactionValues[1], transactionValues[2]);
+//                            System.out.println(shop.getCustomer(transactionValues[1]).getName() + " has successfully purchased " + shop.getSnack(transactionValues[2]).getName());
 
-//                        if (shop.processPurchase(transactionValues[1], transactionValues[2])) {
-//                            System.out.println("true");
-//                        } else {
-//                            System.out.println("false");
-//                        }
+                            if (shop.processPurchase(transactionValues[1], transactionValues[2])) {
+                                System.out.println(shop.getCustomer(transactionValues[1]).getName() + " has successfully purchased " + shop.getSnack(transactionValues[2]).getName());
+                            } else {
+                                System.out.println("Transaction failed.");
+                            }
 
                             break;
 
@@ -143,33 +143,42 @@ public class Simulation {
                             break;
 
                         case "NEW_CUSTOMER":
-                            int noOfValues = transactionValues.length;
-                            switch (noOfValues) {
-                                case 3:
-                                    Customer newCust = new Customer(transactionValues[1], transactionValues[2]);
-                                    shop.addCustomer(newCust);
-                                    System.out.println("Added new customer: " + newCust);
-                                    break;
-                                case 4:
-                                    Customer newCust2 = new Customer(transactionValues[1], transactionValues[2], Integer.parseInt(transactionValues[3]));
-                                    shop.addCustomer(newCust2);
-                                    System.out.println("Added new customer: " + newCust2);
-                                    break;
-                                case 5:
-                                    StudentCustomer newStu = new StudentCustomer(transactionValues[1], transactionValues[2], Integer.parseInt(transactionValues[3]));
-                                    shop.addCustomer(newStu);
-                                    System.out.println("Added new customer: " + newStu);
-                                    break;
-                                case 6:
-                                    StaffCustomer newStaff = new StaffCustomer(transactionValues[1], transactionValues[2], Integer.parseInt(transactionValues[3]), transactionValues[5]);
-                                    shop.addCustomer(newStaff);
-                                    System.out.println("Added new customer: " + newStaff);
-                                    break;
+                            if (transactionValues[3].equals("STUDENT")) {
+                                StudentCustomer newStu = new StudentCustomer(transactionValues[1], transactionValues[2], Integer.parseInt(transactionValues[4]));
+                                shop.addCustomer(newStu);
+                                System.out.println("Added new customer: " + newStu);
+
+                            } else if (transactionValues[3].equals("STAFF")) {
+                                int noOfValues = transactionValues.length;
+                                switch (noOfValues) {
+                                    case 5: // STAFF no school
+                                        StaffCustomer newStaff = new StaffCustomer(transactionValues[1], transactionValues[2], Integer.parseInt(transactionValues[4]), "");
+                                        shop.addCustomer(newStaff);
+                                        System.out.println("Added new customer: " + newStaff);
+                                        break;
+                                    case 6: // STAFF with school
+                                        StaffCustomer newStaff2 = new StaffCustomer(transactionValues[1], transactionValues[2], Integer.parseInt(transactionValues[5]), transactionValues[4]);
+                                        shop.addCustomer(newStaff2);
+                                        System.out.println("Added new customer: " + newStaff2);
+                                        break;
+                                }
+                            } else {
+                                int noOfValues = transactionValues.length;
+                                switch (noOfValues) {
+                                    case 3:
+                                        Customer newCust = new Customer(transactionValues[1], transactionValues[2]);
+                                        shop.addCustomer(newCust);
+                                        System.out.println("Added new customer: " + newCust);
+                                        break;
+                                    case 4:
+                                        Customer newCust2 = new Customer(transactionValues[1], transactionValues[2], Integer.parseInt(transactionValues[3]));
+                                        shop.addCustomer(newCust2);
+                                        System.out.println("Added new customer: " + newCust2);
+                                        break;
+                                }
+
                             }
-                            break;
                     }
-
-
                 } catch (Exception e) {
                     System.out.println("Error: " + e);
                 }
@@ -186,7 +195,8 @@ public class Simulation {
             System.out.println("Error: " + e);
         }
 
-        System.out.println("Largest base price of snack: " + shop.findLargestBasePrice());
+
+        System.out.println("\nLargest base price of snack: " + shop.findLargestBasePrice());
         System.out.println("Number of negative balances at shop: " + shop.countNegativeAccounts());
         System.out.println("Median customer balance: " + shop.calculateMedianCustomerBalance());
         System.out.println("Final shop turnover: " + shop.getShopTurnover());

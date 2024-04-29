@@ -44,7 +44,7 @@ public class SnackShop {
 
 
         try {
-            System.out.println(currentCustomer.chargeAccount(purchasedSnack.basePrice));
+//            System.out.println(currentCustomer.chargeAccount(purchasedSnack.basePrice));
             this.shopTurnover = shopTurnover + currentCustomer.chargeAccount(purchasedSnack.basePrice); // chargeAccount returns price of snack after discounts/surplus applied
             purchaseComplete = true;
 
