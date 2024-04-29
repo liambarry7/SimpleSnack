@@ -56,6 +56,7 @@ public class StaffCustomer extends Customer {
     public static void main(String[] args){
         try {
             StaffCustomer a = new StaffCustomer("123123", "Jane", 100, "CMP");
+            StaffCustomer b = new StaffCustomer("123123", "Jane", 100, null);
             System.out.println(a);
             System.out.println(a.chargeAccount(100));
             System.out.println(a.getAccountBalance());

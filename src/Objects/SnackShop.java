@@ -1,5 +1,6 @@
 package Objects;
 
+import Exceptions.InsufficientBalanceException;
 import Exceptions.InvalidCustomerException;
 import Exceptions.InvalidSnackException;
 
@@ -33,19 +34,26 @@ public class SnackShop {
         snacks.add(newSnack);
     }
 
-    public Boolean processPurchase(String customerID, String snackID) {
-        try {
-            Customer currentCustomer = this.getCustomer(customerID);
-            Snack purchasedSnack = this.getSnack(snackID);
+    public Boolean processPurchase(String customerID, String snackID) throws InvalidCustomerException, InvalidSnackException {
+        Boolean purchaseComplete = false;
 
+        Customer currentCustomer = this.getCustomer(customerID);
+        Snack purchasedSnack = this.getSnack(snackID);
+        System.out.println(currentCustomer);
+
+
+
+        try {
             System.out.println(currentCustomer.chargeAccount(purchasedSnack.basePrice));
-            this.shopTurnover = shopTurnover + currentCustomer.chargeAccount(purchasedSnack.basePrice);
+            this.shopTurnover = shopTurnover + currentCustomer.chargeAccount(purchasedSnack.basePrice); // chargeAccount returns price of snack after discounts/surplus applied
+            purchaseComplete = true;
 
         } catch (Exception e) {
             System.out.println("Error: " + e);
+            purchaseComplete = false;
         }
 
-        return false;
+        return purchaseComplete;
     }
 
     public Customer getCustomer(String customerID) throws InvalidCustomerException {
@@ -138,12 +146,12 @@ public class SnackShop {
     public static void main(String[] args) {
         try {
             SnackShop a = new SnackShop("name");
-            Customer cust1 = new Customer("123456", "dave", 1000);
-            Customer cust2 = new Customer("165446", "ed", 50);
-            StaffCustomer staff = new StaffCustomer("123457", "al", 1000, "CMP");
-            StaffCustomer staff2 = new StaffCustomer("423457", "ai", 1000, "BIO");
-            StudentCustomer stu = new StudentCustomer("123458", "ed", -1);
-            StudentCustomer stu2 = new StudentCustomer("987654", "fi", -20);
+            Customer cust1 = new Customer("cu1000", "dave", 1000);
+            Customer cust2 = new Customer("cust50", "ed", 50);
+            StaffCustomer staff = new StaffCustomer("sf1000", "al", 1000, "CMP");
+            StaffCustomer staff2 = new StaffCustomer("sf1000", "ai", 1000, "BIO");
+            StudentCustomer stu = new StudentCustomer("stud-1", "ed", -1);
+            StudentCustomer stu2 = new StudentCustomer("stu-20", "fi", -500);
 
 
             Drink snack1 = new Drink("D/3238145", "can", 200);
@@ -162,19 +170,22 @@ public class SnackShop {
 
 
             System.out.println("\n" + a.getSnack("F/3281435"));
-            System.out.println("\n" + a.getCustomer("123456"));
+//            System.out.println("\n" + a.getCustomer("123456"));
             System.out.println();
 
             System.out.println("turnover before: " + a.getShopTurnover());
 
-            a.processPurchase("123456", "D/3238145");
+            a.processPurchase("cu1000", "D/3238145");
             System.out.println(cust1);
 
-            a.processPurchase("123457", "D/3238145");
+            a.processPurchase("sf1000", "D/3238145");
             System.out.println(staff);
 
-            a.processPurchase("123458", "D/3238145");
-            System.out.println(stu);
+            System.out.println(a.processPurchase("sf1000", "D/3238145"));
+
+            System.out.println(a.processPurchase("stu-20", "D/3238145"));
+            System.out.println(stu2);
+
 
             System.out.println("turnover after: " + a.getShopTurnover());
 
