@@ -44,7 +44,6 @@ public class Simulation {
         SnackShop shop = initialiseShop("UEA Shop", snackFile, customerFile);
 
         simulateShop(shop, transactionFile);
-//        test(shop, transactionFile);
         System.out.println();
 //        shop.allCustomers();
 //        shop.allSnacks();
@@ -152,6 +151,7 @@ public class Simulation {
                     switch (transactionValues[0]) {
                         case "PURCHASE":
                             if (shop.processPurchase(transactionValues[1], transactionValues[2])) {
+                                System.out.println("Transaction Completed:");
                                 System.out.println(shop.getCustomer(transactionValues[1]).getName() + " has successfully purchased " + shop.getSnack(transactionValues[2]).getName());
 
                             } else {
@@ -161,7 +161,7 @@ public class Simulation {
 
                         case "ADD_FUNDS":
                             shop.getCustomer(transactionValues[1]).addFunds(Integer.parseInt(transactionValues[2]));
-                            System.out.println("Successfully added " + Integer.parseInt(transactionValues[2]) + " to " + shop.getCustomer(transactionValues[1]));
+                            System.out.println("Successfully added £" + String.format("%.2f", (Double.parseDouble(transactionValues[2]) / 100)) + " to " + shop.getCustomer(transactionValues[1]));
                             break;
 
                         case "NEW_CUSTOMER":
