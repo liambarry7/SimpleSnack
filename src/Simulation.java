@@ -78,9 +78,6 @@ public class Simulation {
                         newSnackShop.addSnack(newFood);
                     }
 
-
-//                    Food newFood = new Food(snackValues[0], snackValues[1], Boolean.parseBoolean(snackValues[2]), Integer.parseInt(snackValues[3]));
-//                    newSnackShop.addSnack(newFood);
                 }
             }
 
@@ -122,40 +119,6 @@ public class Simulation {
                             break;
                     }
                 }
-//                else {
-//                    int noOfValues = custValues.length;
-//                    switch (noOfValues) {
-//                        case 2:
-//                            Customer customer = new Customer(custValues[0], custValues[1]);
-//                            newSnackShop.addCustomer(customer);
-//                            break;
-//
-//                        case 3:
-//                            Customer customer2 = new Customer(custValues[0], custValues[1], Integer.parseInt(custValues[2]));
-//                            newSnackShop.addCustomer(customer2);
-//                            break;
-//                    }
-//                }
-
-//                int noOfValues = custValues.length;
-//                switch (noOfValues) {
-//                    case 2:
-//                        Customer newCust = new Customer(custValues[0], custValues[1]);
-//                        newSnackShop.addCustomer(newCust);
-//                        break;
-//                    case 3:
-//                        Customer newCust2 = new Customer(custValues[0], custValues[1], Integer.parseInt(custValues[2]));
-//                        newSnackShop.addCustomer(newCust2);
-//                        break;
-//                    case 4:
-//                        StudentCustomer newStu = new StudentCustomer(custValues[0], custValues[1], Integer.parseInt(custValues[2]));
-//                        newSnackShop.addCustomer(newStu);
-//                        break;
-//                    case 5:
-//                        StaffCustomer newStaff = new StaffCustomer(custValues[0], custValues[1], Integer.parseInt(custValues[2]), custValues[4]);
-//                        newSnackShop.addCustomer(newStaff);
-//                        break;
-//                }
             }
 
 
@@ -174,62 +137,6 @@ public class Simulation {
         System.out.println("Final shop turnover: " + shop.getShopTurnover());
     }
 
-    public static void test(SnackShop shop, File transactionFile) {
-        try {
-            // process 1
-            // PURCHASE,576012,F/8547328
-            System.out.println("Customer: " + shop.getCustomer("576012").toString());
-            System.out.println("Snack: " + shop.getSnack("F/8547328"));
-            shop.processPurchase("576012", "F/8547328");
-            System.out.println("Customer: " + shop.getCustomer("576012").toString());
-            result(shop);
-
-            // process 2
-            // PURCHASE,576012,D/7154984
-            System.out.println("Customer: " + shop.getCustomer("576012").toString());
-            System.out.println("Snack: " + shop.getSnack("F/8547328"));
-            shop.processPurchase("576012", "F/8547328");
-            System.out.println("Customer: " + shop.getCustomer("576012").toString());
-            result(shop);
-
-            // process 3
-            // PURCHASE,576012,F/8547328
-            System.out.println("Customer: " + shop.getCustomer("576012").toString());
-            System.out.println("Snack: " + shop.getSnack("F/8547328"));
-            shop.processPurchase("576012", "F/8547328");
-            System.out.println("Customer: " + shop.getCustomer("576012").toString());
-            result(shop);
-
-            // process 4
-            // PURCHASE,576012,F/8547328
-            System.out.println("Customer: " + shop.getCustomer("576012").toString());
-            System.out.println("Snack: " + shop.getSnack("F/8547328"));
-            shop.processPurchase("576012", "F/8547328");
-            System.out.println("Customer: " + shop.getCustomer("576012").toString());
-            result(shop);
-
-            // process 5
-            // PURCHASE,576012,F/8547328
-            System.out.println("Customer: " + shop.getCustomer("576012").toString());
-            System.out.println("Snack: " + shop.getSnack("F/8547328"));
-            shop.processPurchase("576012", "F/8547328");
-            System.out.println("Customer: " + shop.getCustomer("576012").toString());
-            result(shop);
-
-            // process 6
-            // PURCHASE,576012,F/8547328
-            System.out.println("Customer: " + shop.getCustomer("576012").toString());
-            System.out.println("Snack: " + shop.getSnack("F/8547328"));
-            shop.processPurchase("576012", "F/8547328");
-            System.out.println("Customer: " + shop.getCustomer("576012").toString());
-            result(shop);
-
-
-        } catch(Exception e) {
-            System.out.println("Errpr: " + e);
-        }
-    }
-
     public static void simulateShop(SnackShop shop, File transactionFile) {
         int x = 1;
 
@@ -246,8 +153,6 @@ public class Simulation {
                 try {
                     switch (transactionValues[0]) {
                         case "PURCHASE":
-//                            shop.processPurchase(transactionValues[1], transactionValues[2]);
-//                            System.out.println(shop.getCustomer(transactionValues[1]).getName() + " has successfully purchased " + shop.getSnack(transactionValues[2]).getName());
                             System.out.println("Customer: " + shop.getCustomer(transactionValues[1]));
                             System.out.println("Snack: " + shop.getSnack(transactionValues[2]));
 
@@ -256,8 +161,6 @@ public class Simulation {
 
                                 System.out.println("Post transaction:");
                                 System.out.println("Customer: " + shop.getCustomer(transactionValues[1]).toString());
-//                                result(shop);
-
 
                                 System.out.println(shop.getCustomer(transactionValues[1]).getName() + " has successfully purchased " + shop.getSnack(transactionValues[2]).getName());
 
@@ -314,10 +217,6 @@ public class Simulation {
                             }
                     }
 
-
-//                    Scanner a = new Scanner(System.in);
-//                    a.next();
-
                 } catch (Exception e) {
                     System.out.println("Error: " + e);
                 }
@@ -339,69 +238,5 @@ public class Simulation {
         System.out.println("Median customer balance: " + shop.calculateMedianCustomerBalance());
         System.out.println("Final shop turnover: " + shop.getShopTurnover());
     }
-
-//
-//
-//        try {
-//            Scanner scanner = new Scanner(transactionFile);
-//            while (scanner.hasNextLine()) {
-//                String line = scanner.nextLine();
-//                String[] transactionValues = line.split(",");
-//
-//                switch (transactionValues[0]) {
-//                    case "PURCHASE":
-//                        shop.processPurchase(transactionValues[1], transactionValues[2]);
-//                        System.out.println(shop.getCustomer(transactionValues[1]).getName() + " has successfully purchased " + shop.getSnack(transactionValues[2]).getName());
-//
-//                        break;
-//
-//                    case "ADD_FUNDS":
-//                        shop.getCustomer(transactionValues[1]).addFunds(Integer.parseInt(transactionValues[2]));
-//                        System.out.println("Successfully added " + Integer.parseInt(transactionValues[2]) + " to " + shop.getCustomer(transactionValues[1]));
-//
-//                        break;
-//
-//                    case "NEW_CUSTOMER":
-//                        int noOfValues = transactionValues.length;
-//                        switch (noOfValues) {
-//                            case 3:
-//                                Customer newCust = new Customer(transactionValues[0], transactionValues[1]);
-//                                shop.addCustomer(newCust);
-//                                System.out.println("Added new customer: " + newCust);
-//                                break;
-//                            case 4:
-//                                Customer newCust2 = new Customer(transactionValues[0], transactionValues[1], Integer.parseInt(transactionValues[2]));
-//                                shop.addCustomer(newCust2);
-//                                System.out.println("Added new customer: " + newCust2);
-//                                break;
-//                            case 5:
-//                                StudentCustomer newStu = new StudentCustomer(transactionValues[0], transactionValues[1], Integer.parseInt(transactionValues[2]));
-//                                shop.addCustomer(newStu);
-//                                System.out.println("Added new customer: " + newStu);
-//                                break;
-//                            case 6:
-//                                StaffCustomer newStaff = new StaffCustomer(transactionValues[0], transactionValues[1], Integer.parseInt(transactionValues[2]), transactionValues[4]);
-//                                shop.addCustomer(newStaff);
-//                                System.out.println("Added new customer: " + newStaff);
-//                                break;
-//                        }
-//
-//
-//
-//                        break;
-//                }
-//                x++;
-//                System.out.println(x);
-//
-//
-//            }
-//
-//
-//
-//        } catch(Exception e) {
-//            System.out.println("Error: " + e);
-//        }
-
-
 
 }

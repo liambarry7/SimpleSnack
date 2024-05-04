@@ -10,15 +10,6 @@ public abstract class Snack {
     protected int basePrice;
 
     public Snack(String snackID, String name, int basePrice) throws InvalidSnackException {
-//        if (basePrice > 0) {
-//            this.snackID = snackID;
-//            this.name = name;
-//            this.basePrice = basePrice;
-//
-//        } else {
-//            throw new InvalidSnackException("Invalid snack price");
-//        }
-
         this.snackID = snackID;
         this.name = name;
         this.basePrice = basePrice;
@@ -38,15 +29,4 @@ public abstract class Snack {
         return basePrice;
     }
 
-    public void setSnackID(String snackID) {
-        this.snackID = snackID;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setBasePrice(int basePrice) {
-        this.basePrice = basePrice;
-    }
 }

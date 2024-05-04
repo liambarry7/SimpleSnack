@@ -15,13 +15,6 @@ public class Food extends Snack {
         Pattern snackIDregex = Pattern.compile("F/\\d\\d\\d\\d\\d\\d\\d"); //Letter 'F' followed by '/', then 7 digits
         Matcher matcher = snackIDregex.matcher(snackID);
 
-//        if (matcher.matches()) {
-//            this.hotFood = hotFood;
-//
-//        } else {
-//            throw new InvalidSnackException("Invalid snackID");
-//        }
-
         if (!matcher.matches()) {
             throw new InvalidSnackException("Invalid SnackID.");
         } else if (basePrice <= 0) {
@@ -29,9 +22,6 @@ public class Food extends Snack {
         } else {
             this.hotFood = hotFood;
         }
-
-
-
     }
 
     public String toString() {
@@ -41,7 +31,7 @@ public class Food extends Snack {
     @Override
     public int calculatePrice() {
         // basePrice + surplus charge
-        // Math.ceil to nearest penny
+        // Math.ceil to round up to nearest penny
         int finalPrice = 0;
         if (this.hotFood == true) {
 //            finalPrice = (int) Math.ceil((this.basePrice + (this.basePrice * surchargePercentage)));
@@ -51,22 +41,7 @@ public class Food extends Snack {
             finalPrice = this.basePrice;
         }
         return finalPrice;
-
-
-
-
     }
-
-//    public void test() {
-//        int a = (int) (this.basePrice + (this.basePrice * surchargePercentage));
-//        double b = this.basePrice + (this.basePrice * surchargePercentage);
-//        System.out.println("as int: " + a);
-//        System.out.println("as dbl: " + b);
-//
-//        int x = (int) Math.round(b);
-//        System.out.println("b with round " + x);
-//
-//    }
 
     public Boolean getHotFood() {
         return hotFood;
@@ -75,12 +50,6 @@ public class Food extends Snack {
     public double getSurchargePercentage() {
         return surchargePercentage;
     }
-
-    public void setHotFood(Boolean hotFood) {
-        this.hotFood = hotFood;
-    }
-
-
 
     public static void main(String[] args) {
         try {

@@ -46,6 +46,9 @@ public class Drink extends Snack {
         return snackID + " " + name + " " + sugarContent + " " + basePrice;
     }
 
+    public String getSugarContent() {
+        return sugarContent;
+    }
 
     @Override
     public int calculatePrice() {

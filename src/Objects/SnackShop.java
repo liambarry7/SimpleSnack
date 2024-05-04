@@ -52,12 +52,12 @@ public class SnackShop {
 //            this.shopTurnover = shopTurnover + currentCustomer.chargeAccount(purchasedSnack.basePrice); // chargeAccount returns price of snack after discounts/surplus applied
 //            this.shopTurnover = shopTurnover + currentCustomer.chargeAccount(purchasedSnack.calculatePrice()); // chargeAccount returns price of snack after discounts/surplus applied
 
-            System.out.println("Snack price after surplus: " + purchasedSnack.calculatePrice());
+//            System.out.println("Snack price after surplus: " + purchasedSnack.calculatePrice());
 
 //            currentCustomer.chargeAccount(purchasedSnack.calculatePrice()); // deduct price from customer
 
             this.shopTurnover = this.shopTurnover + currentCustomer.chargeAccount(purchasedSnack.calculatePrice()); // chargeAccount returns price of snack after discounts/surplus applied
-            System.out.println("Tunrover: " + this.shopTurnover);
+//            System.out.println("Tunrover: " + this.shopTurnover);
 
             purchaseComplete = true;
 
@@ -130,13 +130,6 @@ public class SnackShop {
         }
 
         Arrays.sort(medium);
-
-//        for (int i = 0; i < medium.length; i++) {
-//            System.out.println(medium[i]);
-//        }
-//
-//        System.out.println(medium[42]);
-
 
         double middleIndex = ((double) medium.length) / 2;
         if (middleIndex % 1 != 0) { // odd no of values, perfect middle (if list.length is odd and when /2, ends in .5)
