@@ -121,8 +121,6 @@ public class Simulation {
                 }
             }
 
-
-
         } catch(Exception e) {
             System.out.println("Error: " + e);
         }
@@ -130,15 +128,15 @@ public class Simulation {
         return newSnackShop;
     }
 
-    public static void result(SnackShop shop) {
-        System.out.println("Largest base price of snack: " + shop.findLargestBasePrice());
-        System.out.println("Number of negative balances at shop: " + shop.countNegativeAccounts());
-        System.out.println("Median customer balance: " + shop.calculateMedianCustomerBalance());
-        System.out.println("Final shop turnover: " + shop.getShopTurnover());
-    }
+//    public static void result(SnackShop shop) {
+//        System.out.println("Largest base price of snack: " + shop.findLargestBasePrice());
+//        System.out.println("Number of negative balances at shop: " + shop.countNegativeAccounts());
+//        System.out.println("Median customer balance: " + shop.calculateMedianCustomerBalance());
+//        System.out.println("Final shop turnover: " + shop.getShopTurnover());
+//    }
 
     public static void simulateShop(SnackShop shop, File transactionFile) {
-        int x = 1;
+//        int x = 1;
 
 
         try {
@@ -148,35 +146,22 @@ public class Simulation {
                 String line = scanner.nextLine();
                 String[] transactionValues = line.split(",");
 
-                System.out.println("\nProcess no: " + x);
+//                System.out.println("\nProcess no: " + x);
 
                 try {
                     switch (transactionValues[0]) {
                         case "PURCHASE":
-                            System.out.println("Customer: " + shop.getCustomer(transactionValues[1]));
-                            System.out.println("Snack: " + shop.getSnack(transactionValues[2]));
-
                             if (shop.processPurchase(transactionValues[1], transactionValues[2])) {
-
-
-                                System.out.println("Post transaction:");
-                                System.out.println("Customer: " + shop.getCustomer(transactionValues[1]).toString());
-
                                 System.out.println(shop.getCustomer(transactionValues[1]).getName() + " has successfully purchased " + shop.getSnack(transactionValues[2]).getName());
-
-
 
                             } else {
                                 System.out.println("Transaction failed.");
                             }
-
                             break;
 
                         case "ADD_FUNDS":
-                            System.out.println("Customer before add: \n" + shop.getCustomer(transactionValues[1]));
                             shop.getCustomer(transactionValues[1]).addFunds(Integer.parseInt(transactionValues[2]));
                             System.out.println("Successfully added " + Integer.parseInt(transactionValues[2]) + " to " + shop.getCustomer(transactionValues[1]));
-
                             break;
 
                         case "NEW_CUSTOMER":
@@ -193,12 +178,14 @@ public class Simulation {
                                         shop.addCustomer(newStaff);
                                         System.out.println("Added new customer: " + newStaff);
                                         break;
+
                                     case 6: // STAFF with school
                                         StaffCustomer newStaff2 = new StaffCustomer(transactionValues[1], transactionValues[2], Integer.parseInt(transactionValues[5]), transactionValues[4]);
                                         shop.addCustomer(newStaff2);
                                         System.out.println("Added new customer: " + newStaff2);
                                         break;
                                 }
+
                             } else {
                                 int noOfValues = transactionValues.length;
                                 switch (noOfValues) {
@@ -207,6 +194,7 @@ public class Simulation {
                                         shop.addCustomer(newCust);
                                         System.out.println("Added new customer: " + newCust);
                                         break;
+
                                     case 4:
                                         Customer newCust2 = new Customer(transactionValues[1], transactionValues[2], Integer.parseInt(transactionValues[3]));
                                         shop.addCustomer(newCust2);
@@ -220,13 +208,8 @@ public class Simulation {
                 } catch (Exception e) {
                     System.out.println("Error: " + e);
                 }
-
-                x++;
-
-
-
+//                x++;
             }
-
 
         } catch (Exception e) {
             System.out.println("Error: " + e);

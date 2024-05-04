@@ -43,22 +43,9 @@ public class SnackShop {
 
         Customer currentCustomer = this.getCustomer(customerID);
         Snack purchasedSnack = this.getSnack(snackID);
-        System.out.println(currentCustomer);
-
-
 
         try {
-//            System.out.println(currentCustomer.chargeAccount(purchasedSnack.basePrice));
-//            this.shopTurnover = shopTurnover + currentCustomer.chargeAccount(purchasedSnack.basePrice); // chargeAccount returns price of snack after discounts/surplus applied
-//            this.shopTurnover = shopTurnover + currentCustomer.chargeAccount(purchasedSnack.calculatePrice()); // chargeAccount returns price of snack after discounts/surplus applied
-
-//            System.out.println("Snack price after surplus: " + purchasedSnack.calculatePrice());
-
-//            currentCustomer.chargeAccount(purchasedSnack.calculatePrice()); // deduct price from customer
-
             this.shopTurnover = this.shopTurnover + currentCustomer.chargeAccount(purchasedSnack.calculatePrice()); // chargeAccount returns price of snack after discounts/surplus applied
-//            System.out.println("Tunrover: " + this.shopTurnover);
-
             purchaseComplete = true;
 
         } catch (Exception e) {
@@ -124,7 +111,6 @@ public class SnackShop {
         int[] medium = new int[customers.size()];
         int medianValue = -1;
 
-
         for (int i = 0; i < customers.size(); i++) {
             medium[i] = customers.get(i).getAccountBalance();
         }
@@ -136,7 +122,6 @@ public class SnackShop {
             medianValue = medium[(int)middleIndex];
         } else {
             // index before middle + index after middle (for an even no of values in list)
-            // casting to int always rounds up
             medianValue = (medium[(int)middleIndex-1] + medium[(int)middleIndex]) / 2;
         }
 
@@ -210,22 +195,19 @@ public class SnackShop {
         } catch(Exception e) {
             System.out.println(e);
         }
-
-
-
     }
 
-    public void allCustomers() {
-        for (int i = 0; i < this.customers.size(); i++) {
-            System.out.println(customers.get(i));
-        }
-        System.out.println(customers.size());
-    }
-
-    public void allSnacks() {
-        for (int i = 0; i < this.snacks.size(); i++) {
-            System.out.println(snacks.get(i));
-        }
-        System.out.println(snacks.size());
-    }
+//    public void allCustomers() {
+//        for (int i = 0; i < this.customers.size(); i++) {
+//            System.out.println(customers.get(i));
+//        }
+//        System.out.println(customers.size());
+//    }
+//
+//    public void allSnacks() {
+//        for (int i = 0; i < this.snacks.size(); i++) {
+//            System.out.println(snacks.get(i));
+//        }
+//        System.out.println(snacks.size());
+//    }
 }
