@@ -17,7 +17,6 @@ public class StaffCustomer extends Customer {
     }
 
     public String toString() {
-
         return super.toString() + " STAFF " + school;
     }
 
@@ -37,27 +36,18 @@ public class StaffCustomer extends Customer {
         int finalPrice = (int)Math.ceil(discountedPrice);
 
         // Check account balance
-//        int pendingBalance = this.getAccountBalance() - (int)Math.round(discountedPrice);
-//        int pendingBalance = this.getAccountBalance() - ((int)discountedPrice + 1);
         int pendingBalance = this.getAccountBalance() - finalPrice;
         if (pendingBalance < 0) {
             throw new InsufficientBalanceException("Insufficient funds in account.");
         } else {
-            setAccountBalance(pendingBalance);
+            this.accountBalance = pendingBalance;
         }
-
-        System.out.println("final price: " + finalPrice);
-
 
         return finalPrice;
     }
 
     public String getSchool() {
         return school;
-    }
-
-    public void setSchool(String school) {
-        this.school = school;
     }
 
     public static void main(String[] args){

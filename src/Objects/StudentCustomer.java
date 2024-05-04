@@ -6,14 +6,12 @@ import Exceptions.InvalidCustomerException;
 public class StudentCustomer extends Customer {
     public StudentCustomer(String accountID, String name, int accountBalance) throws InvalidCustomerException, InsufficientBalanceException {
         super(accountID, name);
-        // accbalance can be up to negatuve 5
-        // edit constructors for this
+        // accbalance can be up to -5
         if (accountBalance < -500) {
             throw new InsufficientBalanceException("Invalid account balance.");
         } else {
             this.accountBalance = accountBalance;
         }
-
     }
 
     public StudentCustomer(String accountID, String name) throws InvalidCustomerException {
@@ -30,16 +28,12 @@ public class StudentCustomer extends Customer {
         // students get 5% discount & allowed up to £-5 acc balance
         double discountedPrice = Math.ceil(snackPrice * 0.95);
         int finalPrice = (int)Math.ceil(discountedPrice);
-//        int pendingBalance = this.getAccountBalance() - (int)discountedPrice;
-//        int pendingBalance = this.getAccountBalance() - ((int)discountedPrice + 1);
         int pendingBalance = this.getAccountBalance() - finalPrice;
         if (pendingBalance < -500) {
             throw new InsufficientBalanceException("Insufficient funds in account.");
         } else {
-            setAccountBalance(pendingBalance);
+            this.accountBalance = pendingBalance;
         }
-
-        System.out.println("final price: " + finalPrice);
 
         return finalPrice;
     }
