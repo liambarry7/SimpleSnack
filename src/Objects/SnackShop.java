@@ -1,6 +1,5 @@
 package Objects;
 
-import Exceptions.InsufficientBalanceException;
 import Exceptions.InvalidCustomerException;
 import Exceptions.InvalidSnackException;
 
@@ -15,6 +14,7 @@ public class SnackShop {
     private ArrayList<Snack> snacks;
 
     public SnackShop(String shopName) {
+        // Creates SnackShop object
         this.shopName = shopName;
         this.shopTurnover = 0;
         this.customers = new ArrayList<>();
@@ -26,6 +26,7 @@ public class SnackShop {
     }
 
     public void addCustomer(Customer newCustomer) throws InvalidCustomerException {
+        // Adds new customer to snackShop customer arraylist
         for (int i = 0; i < customers.size(); i++) {
             if (customers.get(i).getAccountID().equals(newCustomer.getAccountID())) {
                 throw new InvalidCustomerException("New customer cannot be added - customer already exists.");
@@ -35,10 +36,13 @@ public class SnackShop {
     }
 
     public void addSnack(Snack newSnack) {
+        // adds new snack to snackshop snack arraylist
         snacks.add(newSnack);
     }
 
     public Boolean processPurchase(String customerID, String snackID) throws InvalidCustomerException, InvalidSnackException {
+        // Completes a purchase on a customers account based a given customerID and snackID
+        // (these are used to find the appropriate values and call the appropiate methods
         Boolean purchaseComplete = false;
 
         Customer currentCustomer = this.getCustomer(customerID);
@@ -57,6 +61,7 @@ public class SnackShop {
     }
 
     public Customer getCustomer(String customerID) throws InvalidCustomerException {
+         // Returns the customer object of a given customerID
         Customer customer = null;
         for (int i = 0; i < customers.size(); i++) {
             if (customers.get(i).getAccountID().equals(customerID)) {
@@ -72,6 +77,7 @@ public class SnackShop {
     }
 
     public Snack getSnack(String snackID) throws InvalidSnackException {
+        // Returns the snack object of the given snackID
         Snack snack = null;
         for (int i = 0; i < snacks.size(); i++) {
             if (snacks.get(i).getSnackID().equals(snackID)) {
@@ -82,11 +88,12 @@ public class SnackShop {
         if (snack != null) {
             return snack;
         } else {
-            throw new InvalidSnackException("invalid snack ID.");
+            throw new InvalidSnackException("Invalid snack ID.");
         }
     }
 
     public int findLargestBasePrice() {
+        // Returns the largest base price of a snack in the snackshop snack arraylist
         int largestBasePrice = -1;
         for (int i = 0; i < snacks.size(); i++) {
             if (snacks.get(i).getBasePrice() > largestBasePrice) {
@@ -98,6 +105,7 @@ public class SnackShop {
     }
 
     public int countNegativeAccounts() {
+        // Returns the amount of accounts with a negative balance in the snackShop customer arraylist
         int noOfNegativeAccounts = 0;
         for (int i = 0; i < customers.size(); i++) {
             if (customers.get(i).getAccountBalance() < 0) {
@@ -108,35 +116,39 @@ public class SnackShop {
     }
 
     public int calculateMedianCustomerBalance() {
-        int[] medium = new int[customers.size()];
+        // Returns the median balance of accounts in the snackShop customer arraylist
+        int[] median = new int[customers.size()];
         int medianValue = -1;
 
         for (int i = 0; i < customers.size(); i++) {
-            medium[i] = customers.get(i).getAccountBalance();
+            median[i] = customers.get(i).getAccountBalance();
         }
 
-        Arrays.sort(medium);
+        Arrays.sort(median);
 
-        double middleIndex = ((double) medium.length) / 2;
+        double middleIndex = ((double) median.length) / 2;
         if (middleIndex % 1 != 0) { // odd no of values, perfect middle (if list.length is odd and when /2, ends in .5)
-            medianValue = medium[(int)middleIndex];
+            medianValue = median[(int)middleIndex];
         } else {
             // index before middle + index after middle (for an even no of values in list)
-            medianValue = (medium[(int)middleIndex-1] + medium[(int)middleIndex]) / 2;
+            medianValue = (median[(int)middleIndex-1] + median[(int)middleIndex]) / 2;
         }
 
         return medianValue;
     }
 
     public String getShopName() {
+        // Returns the name of the snackshop
         return shopName;
     }
 
     public int getShopTurnover() {
+        // Returns the SnackShop turnover
         return shopTurnover;
     }
 
     public void setShopName(String shopName) {
+        // Changes the SnackShop name
         this.shopName = shopName;
     }
 
@@ -197,17 +209,4 @@ public class SnackShop {
         }
     }
 
-//    public void allCustomers() {
-//        for (int i = 0; i < this.customers.size(); i++) {
-//            System.out.println(customers.get(i));
-//        }
-//        System.out.println(customers.size());
-//    }
-//
-//    public void allSnacks() {
-//        for (int i = 0; i < this.snacks.size(); i++) {
-//            System.out.println(snacks.get(i));
-//        }
-//        System.out.println(snacks.size());
-//    }
 }

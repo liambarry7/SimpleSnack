@@ -6,52 +6,16 @@ import java.util.Scanner;
 
 public class Simulation {
     public static void main(String[] args) {
-
-        /**             NOTES
-         *
-         *
-         * Decide whether to put snack price exception in superclass or subclass constructors
-         *
-         * Enums for drink sugar content? with switchcase? https://www.w3schools.com/java/java_enums.asp#:~:text=An%20enum%20can%2C%20just%20like,but%20it%20can%20implement%20interfaces).
-         *  Use switchcase for sugar content in drinks
-         *
-         *  when going reading through customers.txt, to deal with STAFF and STUDENT, use those to determine what kind of customer
-         *  each line is, and then truncate it from the line/ignore it when splitting the line with scanner
-         *
-         *  Change the location of try-catches to ensure program continues to run after an issue?
-         *
-         *  Change chargeAccount methods to return the price of the item bought, not the remaining balance - done i think
-         *
-         *  maybe use hashmap for collections in snackshop class? - tried and seems too much work
-         *
-         *  update accessor and mutators correctly
-         *
-         *
-         *  FIX ADDING NEW STAFF CUSTOMER IN SIMULATION - done
-         *
-         *  Round up to nearest penny
-         *
-         *  Remove all customer/snack methods
-         *
-         *
-         */
-
-
-
         File snackFile = new File("snacks.txt");
         File customerFile = new File("customers.txt");
         File transactionFile = new File("transactions.txt");
         SnackShop shop = initialiseShop("UEA Shop", snackFile, customerFile);
-
         simulateShop(shop, transactionFile);
-        System.out.println();
-//        shop.allCustomers();
-//        shop.allSnacks();
-
-
     }
 
     public static SnackShop initialiseShop(String shopName, File snackFile, File customerFile) {
+        // Creates a new snackShop object that is returned at the end of the method
+        // snackFile & customerFile are read and each object is added to the snack
         SnackShop newSnackShop = new SnackShop(shopName);
 
         // read snackFile
@@ -84,7 +48,6 @@ public class Simulation {
             System.out.println("Error: " + e);
         }
 
-
         // read customer file
         // create customer object from each line
         try {
@@ -94,18 +57,20 @@ public class Simulation {
                 String[] custValues = line.split("#");
                 int noOfValues = custValues.length;
 
+                // Depending on the amount of values in each line, create the appropriate customer object
                 if (noOfValues == 2) {
                     Customer customer = new Customer(custValues[0], custValues[1]);
                     newSnackShop.addCustomer(customer);
+
                 } else if (noOfValues == 3) {
                     Customer customer2 = new Customer(custValues[0], custValues[1], Integer.parseInt(custValues[2]));
                     newSnackShop.addCustomer(customer2);
+
                 } else if (custValues[3].equals("STUDENT")) {
                     StudentCustomer newStu = new StudentCustomer(custValues[0], custValues[1], Integer.parseInt(custValues[2]));
                     newSnackShop.addCustomer(newStu);
 
                 } else if (custValues[3].equals("STAFF")) {
-
                     switch(noOfValues) {
                         case 4: // STAFF no school
                             StaffCustomer newStaff2 = new StaffCustomer(custValues[0], custValues[1], Integer.parseInt(custValues[2]), "");
@@ -127,25 +92,15 @@ public class Simulation {
         return newSnackShop;
     }
 
-//    public static void result(SnackShop shop) {
-//        System.out.println("Largest base price of snack: " + shop.findLargestBasePrice());
-//        System.out.println("Number of negative balances at shop: " + shop.countNegativeAccounts());
-//        System.out.println("Median customer balance: " + shop.calculateMedianCustomerBalance());
-//        System.out.println("Final shop turnover: " + shop.getShopTurnover());
-//    }
-
     public static void simulateShop(SnackShop shop, File transactionFile) {
-//        int x = 1;
-
-
+        // Simulates the running of the shop by running transactions read from the transactionFile
+        // Any errors are caught accordingly and successful processes are printed out
         try {
             Scanner scanner = new Scanner(transactionFile);
             while (scanner.hasNextLine()) {
                 System.out.println(); // to seperate lines
                 String line = scanner.nextLine();
                 String[] transactionValues = line.split(",");
-
-//                System.out.println("\nProcess no: " + x);
 
                 try {
                     switch (transactionValues[0]) {
@@ -184,8 +139,8 @@ public class Simulation {
                                         shop.addCustomer(newStaff2);
                                         System.out.println("Added new customer: " + newStaff2);
                                         break;
-                                }
 
+                                }
                             } else {
                                 int noOfValues = transactionValues.length;
                                 switch (noOfValues) {
@@ -208,13 +163,11 @@ public class Simulation {
                 } catch (Exception e) {
                     System.out.println("Error: " + e);
                 }
-//                x++;
             }
 
         } catch (Exception e) {
             System.out.println("Error: " + e);
         }
-
 
         System.out.println("\nLargest base price of snack: " + shop.findLargestBasePrice());
         System.out.println("Number of negative balances at shop: " + shop.countNegativeAccounts());

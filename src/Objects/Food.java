@@ -30,12 +30,10 @@ public class Food extends Snack {
 
     @Override
     public int calculatePrice() {
-        // basePrice + surplus charge
+        // Calculates price of a food snack (basePrice + surplus charge)
         // Math.ceil to round up to nearest penny
         int finalPrice = 0;
         if (this.hotFood == true) {
-//            finalPrice = (int) Math.ceil((this.basePrice + (this.basePrice * surchargePercentage)));
-//            System.out.println("HOT FOOD SURPLUS FOOD: " + Math.ceil(this.basePrice * 0.1));
             finalPrice = this.basePrice + (int) Math.ceil(this.basePrice * 0.1);
         } else if (this.hotFood == false) {
             finalPrice = this.basePrice;
@@ -44,24 +42,29 @@ public class Food extends Snack {
     }
 
     public Boolean getHotFood() {
+        // Returns if food is hot or cold (true or false)
         return hotFood;
     }
 
     public double getSurchargePercentage() {
+        // Returns the surcharge percentage for hot foods
         return surchargePercentage;
     }
 
     public static void main(String[] args) {
         try {
-            Food a = new Food("F/3218513", "Chocolate", false, -1);
-            System.out.println(a);
-
-            System.out.println(a.calculatePrice());
-//            a.test();
+            Food chocolate = new Food("F/3218513", "Chocolate", false, 90);
+            System.out.println(chocolate);
+            System.out.println("SnackID: " + chocolate.getSnackID());
+            System.out.println("Name: " + chocolate.getName());
+            System.out.println("Is hot food? " + chocolate.getHotFood());
+            System.out.println("Snack base price: " + chocolate.getBasePrice());
+            System.out.println("Surcharge Percentage: " + chocolate.getSurchargePercentage());
+            System.out.println("Snack price: " + chocolate.calculatePrice());
 
 
         } catch (Exception e) {
-            System.out.println("Error - " + e);
+            System.out.println("Error:  " + e);
         }
 
     }
