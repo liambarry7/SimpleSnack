@@ -25,8 +25,12 @@ public class SnackShop {
         return shopName + " " + shopTurnover + " " + customers + " " + snacks;
     }
 
-    public void addCustomer(Customer newCustomer) {
-
+    public void addCustomer(Customer newCustomer) throws InvalidCustomerException {
+        for (int i = 0; i < customers.size(); i++) {
+            if (customers.get(i).getAccountID().equals(newCustomer.getAccountID())) {
+                throw new InvalidCustomerException("New customer cannot be added - customer already exists.");
+            }
+        }
         customers.add(newCustomer);
     }
 
@@ -45,7 +49,16 @@ public class SnackShop {
 
         try {
 //            System.out.println(currentCustomer.chargeAccount(purchasedSnack.basePrice));
-            this.shopTurnover = shopTurnover + currentCustomer.chargeAccount(purchasedSnack.basePrice); // chargeAccount returns price of snack after discounts/surplus applied
+//            this.shopTurnover = shopTurnover + currentCustomer.chargeAccount(purchasedSnack.basePrice); // chargeAccount returns price of snack after discounts/surplus applied
+//            this.shopTurnover = shopTurnover + currentCustomer.chargeAccount(purchasedSnack.calculatePrice()); // chargeAccount returns price of snack after discounts/surplus applied
+
+            System.out.println("Snack price after surplus: " + purchasedSnack.calculatePrice());
+
+//            currentCustomer.chargeAccount(purchasedSnack.calculatePrice()); // deduct price from customer
+
+            this.shopTurnover = this.shopTurnover + currentCustomer.chargeAccount(purchasedSnack.calculatePrice()); // chargeAccount returns price of snack after discounts/surplus applied
+            System.out.println("Tunrover: " + this.shopTurnover);
+
             purchaseComplete = true;
 
         } catch (Exception e) {
@@ -117,6 +130,12 @@ public class SnackShop {
         }
 
         Arrays.sort(medium);
+
+//        for (int i = 0; i < medium.length; i++) {
+//            System.out.println(medium[i]);
+//        }
+//
+//        System.out.println(medium[42]);
 
 
         double middleIndex = ((double) medium.length) / 2;

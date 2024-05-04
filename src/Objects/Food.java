@@ -41,8 +41,20 @@ public class Food extends Snack {
     @Override
     public int calculatePrice() {
         // basePrice + surplus charge
-        // Math.round to nearest penny
-        return (int) Math.round((this.basePrice + (this.basePrice * surchargePercentage)));
+        // Math.ceil to nearest penny
+        int finalPrice = 0;
+        if (this.hotFood == true) {
+//            finalPrice = (int) Math.ceil((this.basePrice + (this.basePrice * surchargePercentage)));
+//            System.out.println("HOT FOOD SURPLUS FOOD: " + Math.ceil(this.basePrice * 0.1));
+            finalPrice = this.basePrice + (int) Math.ceil(this.basePrice * 0.1);
+        } else if (this.hotFood == false) {
+            finalPrice = this.basePrice;
+        }
+        return finalPrice;
+
+
+
+
     }
 
 //    public void test() {

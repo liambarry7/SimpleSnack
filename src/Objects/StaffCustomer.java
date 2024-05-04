@@ -28,21 +28,28 @@ public class StaffCustomer extends Customer {
         double discountedPrice = snackPrice;
         if (this.getSchool().equals(("CMP"))) {
             // 10% discount
-            discountedPrice = discountedPrice * 0.8;
+            discountedPrice = discountedPrice * 0.9;
         } else if (this.getSchool().equals("BIO") || this.getSchool().equals("MTH")) {
             // 2% discount
             discountedPrice = discountedPrice * 0.98;
         }
 
+        int finalPrice = (int)Math.ceil(discountedPrice);
+
         // Check account balance
-        int pendingBalance = this.getAccountBalance() - (int)Math.round(discountedPrice);
+//        int pendingBalance = this.getAccountBalance() - (int)Math.round(discountedPrice);
+//        int pendingBalance = this.getAccountBalance() - ((int)discountedPrice + 1);
+        int pendingBalance = this.getAccountBalance() - finalPrice;
         if (pendingBalance < 0) {
             throw new InsufficientBalanceException("Insufficient funds in account.");
         } else {
             setAccountBalance(pendingBalance);
         }
 
-        return (int)discountedPrice;
+        System.out.println("final price: " + finalPrice);
+
+
+        return finalPrice;
     }
 
     public String getSchool() {

@@ -98,6 +98,7 @@ public class Customer {
         } else {
             setAccountBalance(this.getAccountBalance() - snackPrice);
         }
+        System.out.println("final price: " + snackPrice);
         return snackPrice;
     }
 
