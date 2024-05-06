@@ -154,55 +154,69 @@ public class SnackShop {
 
     public static void main(String[] args) {
         try {
-            SnackShop a = new SnackShop("name");
-            Customer cust1 = new Customer("cu1000", "dave", 1000);
-            Customer cust2 = new Customer("cust50", "ed", 50);
-            StaffCustomer staff = new StaffCustomer("sf1000", "al", 1000, "CMP");
-            StaffCustomer staff2 = new StaffCustomer("sf1000", "ai", 1000, "BIO");
-            StudentCustomer stu = new StudentCustomer("stud-1", "ed", -1);
-            StudentCustomer stu2 = new StudentCustomer("stu-20", "fi", -500);
+            Customer cust1 = new Customer("45ND82", "David Maloney", 1500);
+            Customer cust2 = new Customer("2H37Y9", "Robert Darkman");
+            StaffCustomer staff1 = new StaffCustomer("2020CV", "Kimi Raikkonen", 2500, "CMP");
+            StaffCustomer staff2 = new StaffCustomer("45ASD7", "Jenson Button", 600,  "BIO");
+            StaffCustomer staff3 = new StaffCustomer("23DBA3", "Nico Rosberg", "");
+            StudentCustomer stu1 = new StudentCustomer("4IK83H", "Cameron Russell", 2500);
+            StudentCustomer stu2 = new StudentCustomer("23D4J3", "Keke Rosberg");
+
+            Food chocolate = new Food("F/3218513", "Chocolate", false, 90);
+            Drink fanta = new Drink("D/1232114", "Fanta", "high", 180);
+            Drink water = new Drink("D/1252424", "Water", 100);
+
+            SnackShop shop = new SnackShop("UEA shop");
+            System.out.println(shop);
+
+            // Add customers and snacks to shop
+            shop.addCustomer(cust1);
+            shop.addCustomer(cust2);
+            shop.addCustomer(staff1);
+            shop.addCustomer(staff2);
+            shop.addCustomer(staff3);
+            shop.addCustomer(stu1);
+            shop.addCustomer(stu2);
+            shop.addSnack(chocolate);
+            shop.addSnack(fanta);
+            shop.addSnack(water);
+            System.out.println(shop);
+
+            // Get snack and customer from shop
+            System.out.println("\n" + shop.getSnack("F/3218513"));
+            System.out.println(shop.getCustomer("23D4J3"));
+
+            // turnover and purchases
+            System.out.println("\nTurnover before purchases: " + shop.getShopTurnover());
+
+            shop.processPurchase("23D4J3", "F/3218513");
+            System.out.println(shop.getCustomer("23D4J3").getName() + " has successfully purchased " + shop.getSnack("F/3218513").getName() + " for £" + String.format("%.2f", (Double.valueOf(shop.getSnack("F/3218513").getBasePrice()) / 100)));
+
+            shop.processPurchase("45ASD7", "D/1232114");
+            System.out.println(shop.getCustomer("45ASD7").getName() + " has successfully purchased " + shop.getSnack("D/1232114").getName() + " for £" + String.format("%.2f", (Double.valueOf(shop.getSnack("D/1232114").getBasePrice()) / 100)));
+
+            shop.processPurchase("2020CV", "D/1252424");
+            System.out.println(shop.getCustomer("2020CV").getName() + " has successfully purchased " + shop.getSnack("D/1252424").getName() + " for £" + String.format("%.2f", (Double.valueOf(shop.getSnack("D/1252424").getBasePrice()) / 100)));
+
+            shop.processPurchase("4IK83H", "D/1232114");
+            System.out.println(shop.getCustomer("4IK83H").getName() + " has successfully purchased " + shop.getSnack("D/1232114").getName() + " for £" + String.format("%.2f", (Double.valueOf(shop.getSnack("D/1232114").getBasePrice()) / 100)));
 
 
-            Drink snack1 = new Drink("D/3238145", "can", 200);
-            Food snack2 = new Food("F/3281435", "crisp", true, 250);
+            System.out.println("Turnover after purchases: " + shop.getShopTurnover());
 
-            System.out.println(a.toString());
-            a.addCustomer(cust1);
-            a.addCustomer(cust2);
-            a.addCustomer(staff);
-            a.addCustomer(staff2);
-            a.addCustomer(stu);
-            a.addCustomer(stu2);
-            a.addSnack(snack1);
-            a.addSnack(snack2);
-            System.out.println(a.toString());
+            // Largest base price of snack
+            System.out.println("\nLargest base price of snack: " + shop.findLargestBasePrice());
 
+            // Median customer balance
+            System.out.println("\nMedian customer balance: " + shop.calculateMedianCustomerBalance());
 
-            System.out.println("\n" + a.getSnack("F/3281435"));
-//            System.out.println("\n" + a.getCustomer("123456"));
-            System.out.println();
+            // No. of Negative customer balances
+            System.out.println("Number of negative customer balances: " + shop.countNegativeAccounts());
 
-            System.out.println("turnover before: " + a.getShopTurnover());
-
-            a.processPurchase("cu1000", "D/3238145");
-            System.out.println(cust1);
-
-            a.processPurchase("sf1000", "D/3238145");
-            System.out.println(staff);
-
-            System.out.println(a.processPurchase("sf1000", "D/3238145"));
-
-            System.out.println(a.processPurchase("stu-20", "D/3238145"));
-            System.out.println(stu2);
-
-
-            System.out.println("turnover after: " + a.getShopTurnover());
-
-            System.out.println("Largest Base Price: " + a.findLargestBasePrice());
-            System.out.println("No of negative accounts: " + a.countNegativeAccounts());
-
-            System.out.println("median acc balancee: " + a.calculateMedianCustomerBalance());
-            a.calculateMedianCustomerBalance();
+            //Changing shop name
+            System.out.println("Shop name: " + shop.getShopName());
+            shop.setShopName("Spar Store");
+            System.out.println("Shop name: " + shop.getShopName());
 
         } catch(Exception e) {
             System.out.println(e);

@@ -107,7 +107,7 @@ public class Simulation {
                         case "PURCHASE":
                             if (shop.processPurchase(transactionValues[1], transactionValues[2])) {
                                 System.out.println("Transaction Completed:");
-                                System.out.println(shop.getCustomer(transactionValues[1]).getName() + " has successfully purchased " + shop.getSnack(transactionValues[2]).getName());
+                                System.out.println(shop.getCustomer(transactionValues[1]).getName() + " has successfully purchased " + shop.getSnack(transactionValues[2]).getName() + " for £" + String.format("%.2f", (Double.valueOf(shop.getSnack(transactionValues[2]).getBasePrice()) / 100)));
 
                             } else {
                                 System.out.println("Transaction failed.");
